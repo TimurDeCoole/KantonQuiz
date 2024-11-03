@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flag Quiz</title>
+    <link rel="stylesheet" href="quiz3.css">
+</head>
+<body>
+    <div class="question" id="questionText">Geben Sie den Namen des Kantons ein:</div>
+    <img id="optionImage" class="option-image" src="" alt="Option Image">
+    <input type="text" id="userInput" placeholder="Geben Sie den Namen des Kantons ein">
+    <div class="abschicken-knopf"><button onclick="checkAnswer()">Antwort abschicken</button></div>  
+    <div>
+        <button class="zurück-knopf" onclick="window.location.href='quiz-auswahl.html'">Zurück</button>
+      </div>  
+    <div id="feedback" class="feedback">Falsch! Bitte versuche es erneut.</div>
+
+    <script>
+        const questions = [
+            { cantonName: 'Zürich', image: 'images/Zürich.png' },
+            { cantonName: 'Bern', image: 'images/Bern.png' },
+            { cantonName: 'Luzern', image: 'images/Luzern.png' },
+            { cantonName: 'Uri', image: 'images/Uri.png' },
+            { cantonName: 'Schwyz', image: 'images/Schwyz.png' },
+            { cantonName: 'Obwalden', image: 'images/Obwalden.png' },
+            { cantonName: 'Nidwalden', image: 'images/Nidwalden.png' },
+            { cantonName: 'Glarus', image: 'images/Glarus.png' },
+            { cantonName: 'Zug', image: 'images/Zug.png' },
+            { cantonName: 'Aargau', image: 'images/Aargau.png' },
+            { cantonName: 'Solothurn', image: 'images/Solothurn.png' },
+            { cantonName: 'Basel Stadt', image: 'images/Basel-Stadt.png' },
+            { cantonName: 'Basel Landschaft', image: 'images/Basel-Landschaft.png' },
+            { cantonName: 'Freiburg', image: 'images/Freiburg.png' },
+            { cantonName: 'Neuenburg', image: 'images/Neuenburg.png' },
+            { cantonName: 'Waadt', image: 'images/Waadt.png' },
+            { cantonName: 'Wallis', image: 'images/Wallis.png' },
+            { cantonName: 'Genf', image: 'images/Genf.png' },
+            { cantonName: 'Jura', image: 'images/Jura.png' },
+            { cantonName: 'Schaffhausen', image: 'images/Schaffhausen.png' },
+            { cantonName: 'Thurgau', image: 'images/Thurgau.png' },
+            { cantonName: 'Graubünden', image: 'images/Graubünden.png' },
+            { cantonName: 'Appenzell Innerrhoden', image: 'images/Appenzell_Innerrhoden.png' },
+            { cantonName: 'Appenzell Ausserrhoden', image: 'images/Appenzell_Ausserrhoden.png' },
+            { cantonName: 'Tessin', image: 'images/Tessin.png' },
+            { cantonName: 'St. Gallen', image: 'images/St. Gallen.png' }
+        ];
+
+        let currentQuestion = 0;
+
+        function loadQuestion() {
+            const question = questions[currentQuestion];
+            const questionText = document.getElementById("questionText");
+            const optionImage = document.getElementById("optionImage");
+            const userInput = document.getElementById("userInput");
+            const feedback = document.getElementById("feedback");
+
+            questionText.textContent = `Geben Sie den Namen des Kantons für diesen Wappen ein:`;
+            optionImage.src = question.image;
+            userInput.value = "";
+            feedback.style.display = "none";
+        }
+
+        function checkAnswer() {
+            const userInput = document.getElementById("userInput").value.trim();
+            const feedback = document.getElementById("feedback");
+
+            if (userInput.toLowerCase() === questions[currentQuestion].cantonName.toLowerCase()) {
+                currentQuestion++;
+                if (currentQuestion < questions.length) {
+                    loadQuestion();
+                    feedback.style.display = "none";
+                } else {
+                    feedback.style.display = "block";
+                    feedback.textContent = "Herzlichen Glückwunsch! Du hast das Quiz abgeschlossen.";
+                }
+            } else {
+                feedback.style.display = "block";
+                feedback.textContent = "Falsch! Bitte versuche es erneut.";
+            }
+        }
+
+
+        document.getElementById("userInput").addEventListener("keydown", function(event) {
+            if (event.key === "Enter") {
+                checkAnswer();
+            }
+        });
+
+        loadQuestion();
+    </script>
+</body>
+</html>

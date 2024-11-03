@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quiz</title>
+  <link rel="stylesheet" href="quiz1.css">
+</head>
+<body>
+  <div class="labels" id="options"></div>
+  <img id="questionImage" src="" alt="Question Image" class="question-image">
+  <div class="abschicken-knopf">
+    <button onclick="checkAnswer()">Antwort abschicken</button>
+  </div>
+  <div>
+    <button class="zurück-knopf" onclick="window.location.href='quiz-auswahl.html'">Zurück</button>
+  </div>
+  <div id="feedback" class="feedback">Falsch! Bitte versuche es erneut.</div>
+  <script>
+	const questions = [
+        {
+        image: 'images/Zürich.png',
+        options: [
+            { text: 'Bern', value: 'Option1' },
+            { text: 'Zürich', value: 'Option2' },
+            { text: 'Aargau', value: 'Option3' }
+        ],
+        correct: 'Option2'
+    },
+    {
+        image: 'images/Bern.png',
+        options: [
+            { text: 'Zürich', value: 'Option1' },
+            { text: 'Thurgau', value: 'Option2' },
+            { text: 'Bern', value: 'Option3' }
+        ],
+        correct: 'Option3'
+    },
+    {
+        image: 'images/Luzern.png',
+        options: [
+            { text: 'Graubünden', value: 'Option1' },
+            { text: 'Luzern', value: 'Option2' },
+            { text: 'Tessin', value: 'Option3' }
+        ],
+        correct: 'Option2'
+    },
+    {
+        image: 'images/Uri.png',
+        options: [
+            { text: 'Luzern', value: 'Option1' },
+            { text: 'Uri', value: 'Option2' },
+            { text: 'Zug', value: 'Option3' }
+        ],
+        correct: 'Option2'
+    },
+    {
+        image: 'images/Schwyz.png',
+        options: [
+            { text: 'St. Gallen', value: 'Option1' },
+            { text: 'Schwyz', value: 'Option2' },
+            { text: 'Zürich', value: 'Option3' }
+        ],
+        correct: 'Option2'
+    },
+    {
+        image: 'images/Obwalden.png',
+        options: [
+            { text: 'Obwalden', value: 'Option1' },
+            { text: 'Aargau', value: 'Option2' },
+            { text: 'Fribourg', value: 'Option3' }
+        ],
+        correct: 'Option1'
+    },
+    {
+        image: 'images/Nidwalden.png',
+        options: [
+            { text: 'Nidwalden', value: 'Option1' },
+            { text: 'Zug', value: 'Option2' },
+            { text: 'Obwalden', value: 'Option3' }
+        ],
+        correct: 'Option1'
+    },
+    {
+        image: 'images/Glarus.png',
+        options: [
+            { text: 'Zürich', value: 'Option1' },
+            { text: 'Glarus', value: 'Option2' },
+            { text: 'Thurgau', value: 'Option3' }
+        ],
+        correct: 'Option2'
+    },
+    {
+        image: 'images/Zug.png',
+        options: [
+            { text: 'Basel-Landschaft', value: 'Option1' },
+            { text: 'Zug', value: 'Option2' },
+            { text: 'Schaffhausen', value: 'Option3' }
+        ],
+        correct: 'Option2'
+    },
+    {
+        image: 'images/Aargau.png',
+        options: [
+            { text: 'Schwyz', value: 'Option1' },
+            { text: 'Aargau', value: 'Option2' },
+            { text: 'Freiburg', value: 'Option3' }
+        ],
+        correct: 'Option2'
+    },
+    {
+        image: 'images/Solothurn.png',
+        options: [
+            { text: 'Aarau', value: 'Option1' },
+            { text: 'Solothurn', value: 'Option2' },
+            { text: 'Wallis', value: 'Option3' }
+        ],
+        correct: 'Option2'
+    },
+    {
+        image: 'images/Basel-Stadt.png',
+        options: [
+            { text: 'Basel-Stadt', value: 'Option1' },
+            { text: 'Zug', value: 'Option2' },
+            { text: 'Basel-Landschaft', value: 'Option3' }
+        ],
+        correct: 'Option1'
+    },
+    {
+        image: 'images/Basel-Landschaft.png',
+        options: [
+            { text: 'Freiburg', value: 'Option1' },
+            { text: 'Basel-Landschaft', value: 'Option2' },
+            { text: 'Wallis', value: 'Option3' }
+        ],
+        correct: 'Option2'
+    },
+    {
+        image: 'images/Freiburg.png',
+        options: [
+            { text: 'Freiburg', value: 'Option1' },
+            { text: 'Neuenburg', value: 'Option2' },
+            { text: 'Waadt', value: 'Option3' }
+        ],
+        correct: 'Option1'
+    },
+    {
+        image: 'images/Neuenburg.png',
+        options: [
+            { text: 'Neuenburg', value: 'Option1' },
+            { text: 'Genf', value: 'Option2' },
+            { text: 'St. Gallen', value: 'Option3' }
+        ],
+        correct: 'Option1'
+    },
+    {
+        image: 'images/Waadt.png',
+        options: [
+            { text: 'Waadt', value: 'Option1' },
+            { text: 'Wallis', value: 'Option2' },
+            { text: 'Zug', value: 'Option3' }
+        ],
+        correct: 'Option1'
+    },
+    {
+        image: 'images/Wallis.png',
+        options: [
+            { text: 'Wallis', value: 'Option1' },
+            { text: 'Graubünden', value: 'Option2' },
+            { text: 'Uri', value: 'Option3' }
+        ],
+        correct: 'Option1'
+    },
+    {
+        image: 'images/Genf.png',
+        options: [
+            { text: 'Waadt', value: 'Option1' },
+            { text: 'Genf', value: 'Option2' },
+            { text: 'Neuenburg', value: 'Option3' }
+        ],
+        correct: 'Option2'
+    },
+    {
+        image: 'images/Jura.png',
+        options: [
+            { text: 'Jura', value: 'Option1' },
+            { text: 'Solothurn', value: 'Option2' },
+            { text: 'Graubünden', value: 'Option3' }
+        ],
+        correct: 'Option1'
+    },
+    {
+        image: 'images/Schaffhausen.png',
+        options: [
+            { text: 'Schaffhausen', value: 'Option1' },
+            { text: 'Zug', value: 'Option2' },
+            { text: 'Thurgau', value: 'Option3' }
+        ],
+        correct: 'Option1'
+    },
+    {
+        image: 'images/Thurgau.png',
+        options: [
+            { text: 'Aargau', value: 'Option1' },
+            { text: 'Thurgau', value: 'Option2' },
+            { text: 'Zürich', value: 'Option3' }
+        ],
+        correct: 'Option2'
+    },
+    {
+        image: 'images/Graubünden.png',
+        options: [
+            { text: 'Graubünden', value: 'Option1' },
+            { text: 'Luzern', value: 'Option2' },
+            { text: 'Tessin', value: 'Option3' }
+        ],
+        correct: 'Option1'
+    },
+    {
+        image: 'images/Appenzell_Innerrhoden.png',
+        options: [
+            { text: 'Appenzell Innerrhoden', value: 'Option1' },
+            { text: 'Tessin', value: 'Option2' },
+            { text: 'St. Gallen', value: 'Option3' }
+        ],
+        correct: 'Option1'
+    },
+    {
+        image: 'images/Appenzell_Ausserrhoden.png',
+        options: [
+            { text: 'Appenzell Ausserrhoden', value: 'Option1' },
+            { text: 'Thurgau', value: 'Option2' },
+            { text: 'Schwyz', value: 'Option3' }
+        ],
+        correct: 'Option1'
+    },
+    {
+        image: 'images/Tessin.png',
+        options: [
+            { text: 'Luzern', value: 'Option1' },
+            { text: 'Tessin', value: 'Option2' },
+            { text: 'Neuenburg', value: 'Option3' }
+        ],
+        correct: 'Option2'
+    }
+        ];
+    let currentQuestion = 0;
+
+    function loadQuestion() {
+      const question = questions[currentQuestion];
+      const optionsContainer = document.getElementById("options");
+      const imageElement = document.getElementById("questionImage");
+      optionsContainer.innerHTML = "";
+      imageElement.src = question.image;
+
+      question.options.forEach(option => {
+        const label = document.createElement("label");
+        label.innerHTML = `<input type="radio" name="question" value="${option.value}"> ${option.text}`;
+        optionsContainer.appendChild(label);
+      });
+    }
+
+    function checkAnswer() {
+      const selectedOption = document.querySelector('input[name="question"]:checked');
+      const feedback = document.getElementById("feedback");
+
+      if (selectedOption && selectedOption.value === questions[currentQuestion].correct) {
+        currentQuestion++;
+        if (currentQuestion < questions.length) {
+          loadQuestion();
+          feedback.style.display = "none";
+        } else {
+          feedback.style.display = "block";
+          feedback.textContent = "Herzlichen Glückwunsch! Du hast das Quiz abgeschlossen.";
+        }
+      } else if (selectedOption) {
+        feedback.style.display = "block";
+        feedback.textContent = "Falsch! Bitte versuche es erneut.";
+      }
+    }
+
+    loadQuestion();
+  </script>
+</body>
+</html>

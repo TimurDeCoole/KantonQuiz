@@ -4,7 +4,73 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Schwerer Quiz</title>
-    <link rel="stylesheet" href="quiz3.css">
+    <style>body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+}
+.question {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+    text-align: center;
+}
+.option-image {
+    width: 100px;
+    height: auto;
+    margin-bottom: 20px;
+}
+.feedback {
+    margin-top: 15px;
+    color: red;
+    font-weight: bold;
+    display: none;
+}
+input[type="text"] {
+    padding: 10px;
+    font-size: 16px;
+    margin-top: 10px;
+    width: 200px;
+    border: 2px solid #ccc;
+    transition: border-color 0.3s;
+}
+input[type="text"]:focus {
+    border-color: #19a1f5;
+    outline: none;
+}
+button {
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #04AA6D;
+    margin-top: 10px;
+}
+
+.zurück-knopf {
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    background-color: #FF3030;
+}
+
+.zurück-knopf:focus {
+    outline: none;
+}</style>
 </head>
 <body>
     <div class="question" id="questionText">Geben Sie den Namen des Kantons ein:</div>

@@ -4,7 +4,65 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Leichter Quiz</title>
-  <link rel="stylesheet" href="quiz1.css">
+	<style>body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+  }
+  .labels {
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  .labels label {
+    display: block;
+    margin: 10px 0;
+    font-size: 1.2em;
+  }
+  .question-image {
+    max-width: 100%;
+    height: auto;
+  }
+  .feedback {
+    margin-top: 15px;
+    color: red;
+    font-weight: bold;
+    display: none;
+  }
+  button {
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    background-color: #04AA6D;
+    margin-top: 10px;
+  }
+
+  .zurück-knopf {
+          border: none;
+          color: white;
+          padding: 15px 32px;
+          text-align: center;
+          text-decoration: none;
+          display: inline-block;
+          font-size: 16px;
+          margin: 4px 2px;
+          cursor: pointer;
+          background-color: #FF3030;
+      }
+
+      .zurück-knopf:focus {
+          outline: none;
+      }</style>
 </head>
 <body>
   <div class="labels" id="options"></div>
